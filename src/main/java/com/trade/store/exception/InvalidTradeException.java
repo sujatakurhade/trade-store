@@ -1,6 +1,9 @@
 package com.trade.store.exception;
 
-public class InvalidTradeException extends Exception{
+/**
+ * This is custom InvalidTrade exception class which extends checked exception
+ */
+public class InvalidTradeException extends Exception {
     public InvalidTradeException() {
     }
 

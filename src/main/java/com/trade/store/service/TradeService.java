@@ -6,6 +6,9 @@ import com.trade.store.model.Trade;
 
 import java.util.List;
 
+/**
+ * This interface contains all trade services
+ */
 public interface TradeService {
 
     /**
@@ -19,7 +22,15 @@ public interface TradeService {
     Boolean validateAndUpdateStore(Trade trade) throws InvalidTradeException, EntityViolationException;
 
 
+    /**
+     * This method updates expired flag based on the Maturity date
+     */
     void updateExpiredFlagToY();
 
+    /**
+     * This method returns all trade from store
+     *
+     * @return List<Trade>
+     */
     List<Trade> findAllTrade();
 }
