@@ -4,6 +4,8 @@ import com.trade.store.exception.EntityViolationException;
 import com.trade.store.exception.InvalidTradeException;
 import com.trade.store.model.Trade;
 
+import java.util.List;
+
 public interface TradeService {
 
     /**
@@ -18,4 +20,6 @@ public interface TradeService {
 
 
     void updateExpiredFlagToY();
+
+    List<Trade> findAllTrade();
 }

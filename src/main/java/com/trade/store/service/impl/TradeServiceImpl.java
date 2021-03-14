@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class TradeServiceImpl implements TradeService {
+    public static final String N = "N";
     private Logger LOG = LoggerFactory.getLogger(TradeServiceImpl.class);
 
     private static final String Y = "Y";
@@ -80,14 +81,27 @@ public class TradeServiceImpl implements TradeService {
 
     @Override
     public void updateExpiredFlagToY() {
-        tradeRepository.findAll().forEach(trade -> {
-            if (trade.getMaturityDate().isBefore(LocalDate.now())) {
-                int status = tradeRepository.updateTradeByTradeIdAndVersion(trade.getTradeId(), trade.getVersion(), Y);
-                if (status <= 0) {
-                    LOG.warn("Error while updating expiry flag for trade {} and version {}", trade.getTradeId(), trade.getVersion());
-                }
-            }
-        });
+//        List<Trade> eligibleCheckMaturityTradeList = tradeRepository.findByExpiredFlag(N);
+//        eligibleCheckMaturityTradeList.forEach(trade -> {
+//            LOG.info("Eligible Trade to verify Maturity Date: {}", trade.toString());
+//            if (trade.getMaturityDate().isBefore(LocalDate.now())) {
+//                int status = tradeRepository.updateTradeByTradeIdAndVersion(trade.getTradeId(), trade.getVersion(), Y);
+//                if (status <= 0) {
+//                    LOG.warn("Error while updating expiry flag for trade {} and version {}", trade.getTradeId(), trade.getVersion());
+//                }
+//            } else {
+//                LOG.info("Trade {} not Eligible to update Expired flag. {}", trade.getTradeId());
+//            }
+//        });
+        int status = tradeRepository.updateExpirationFlagIfMaturityDateIsExpired(LocalDate.now());
+        if (status <= 0) {
+            LOG.warn("Error while updating expiry flag at time {}", LocalDate.now());
+        }
+    }
+
+    @Override
+    public List<Trade> findAllTrade() {
+        return tradeRepository.findAll();
     }
 
 }

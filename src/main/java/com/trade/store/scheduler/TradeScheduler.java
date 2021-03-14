@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
 
 @Component
@@ -15,13 +16,22 @@ public class TradeScheduler {
 
     private Logger LOG = LoggerFactory.getLogger(TradeServiceImpl.class);
 
-
     @Autowired
     private TradeService tradeService;
 
+    @PostConstruct
+    public void onApplicationStartUp() {
+        LOG.info("Application StartUp :: Execution Time - "+ new Date());
+        this.updateExpiredFlag();
+    }
+
     @Scheduled(cron = "0 2 0 ? * *")
-    public void scheduleTaskWithCronExpression() {
+    public void scheduleTask() {
         LOG.info("Cron Task :: Execution Time - "+ new Date());
+        this.updateExpiredFlag();
+    }
+
+    private void updateExpiredFlag() {
         tradeService.updateExpiredFlagToY();
     }
 }

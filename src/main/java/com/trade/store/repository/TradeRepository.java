@@ -21,6 +21,8 @@ public interface TradeRepository extends JpaRepository<Trade, String> {
      */
     List<Trade> findByTradeId(String tradeId);
 
+    List<Trade> findByExpiredFlag(String expiredFlag);
+
     @Modifying
     @Transactional
     @Query(value =
@@ -40,4 +42,13 @@ public interface TradeRepository extends JpaRepository<Trade, String> {
                     "SET st.expiredFlag= :expiredFlag " +
                     "WHERE st.tradeId= :tradeId AND st.version= :version")
     int updateTradeByTradeIdAndVersion(@Param("tradeId") String tradeId, @Param("version") int version, @Param("expiredFlag") String expiredFlag);
+
+    @Modifying
+    @Transactional
+    @Query(value =
+            "UPDATE Trade st " +
+                    "SET st.expiredFlag= 'Y' " +
+                    "WHERE st.maturityDate < :currentDate")
+    int updateExpirationFlagIfMaturityDateIsExpired(@Param("currentDate") LocalDate currentDate);
+
 }
