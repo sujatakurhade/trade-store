@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 public class TradeSchedulerTest {
 
     @SpyBean
-    TradeScheduler tradeScheduler;
+    private TradeScheduler tradeScheduler;
 
    /* @Test
     public void scheduleTask() {

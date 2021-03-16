@@ -61,7 +61,7 @@ public class TradeControllerTest {
 
         // verify
         int status = result.getResponse().getStatus();
-        assertEquals(HttpStatus.OK.value(), status, "Trade Store Successfully");
+        assertEquals(HttpStatus.OK.value(), status, "Incorrect Response Status");
 
         // verify that service method was called once
         verify(tradeService).validateAndUpdateStore(any(Trade.class));
