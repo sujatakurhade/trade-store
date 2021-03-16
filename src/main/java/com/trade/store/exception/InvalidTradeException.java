@@ -1,6 +1,6 @@
 package com.trade.store.exception;
 
-public class InvalidTradeException extends RuntimeException{
+public class InvalidTradeException extends Exception{
     public InvalidTradeException() {
     }
 

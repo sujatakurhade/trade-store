@@ -1,14 +1,21 @@
 package com.trade.store.service;
 
+import com.trade.store.exception.EntityViolationException;
+import com.trade.store.exception.InvalidTradeException;
 import com.trade.store.model.Trade;
 
 public interface TradeService {
 
-    void validateAndOverrideOldTrade(Trade trade,Trade oldTrade);
+    /**
+     * This method validate trade based on the business constraints and update the trade store accordingly.
+     *
+     * @param trade
+     * @return Boolean
+     * @throws InvalidTradeException
+     * @throws EntityViolationException
+     */
+    Boolean validateAndUpdateStore(Trade trade) throws InvalidTradeException, EntityViolationException;
 
-    void createNewTrade(Trade trade);
-
-    Trade findById(String tradeId);
 
     void updateExpiredFlagToY();
 }
