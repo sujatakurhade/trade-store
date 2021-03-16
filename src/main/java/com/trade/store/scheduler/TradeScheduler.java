@@ -32,7 +32,7 @@ public class TradeScheduler {
     /**
      * This cron task which execute every day midnight 00.02 AM to ensure expiry flag should be updated based on the maturity date
      */
-    @Scheduled(cron = "0 2 0 ? * *")
+    @Scheduled(cron = "${cronExpression}")
     public void scheduleTask() {
         LOG.info("Cron Task :: Execution Time - " + new Date());
         this.updateExpiredFlag();

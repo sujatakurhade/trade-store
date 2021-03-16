@@ -10,8 +10,4 @@ public class EntityViolationException extends Exception {
     public EntityViolationException(String message) {
         super(message);
     }
-
-    public EntityViolationException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

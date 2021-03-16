@@ -55,7 +55,7 @@ public class TradeServiceImpl implements TradeService {
 
     private boolean validMaturityDate(Trade trade) throws InvalidTradeException {
         if (trade.getMaturityDate().isBefore(LocalDate.now())) {
-            throw new InvalidTradeException("Invalid Maturity date for trade " + trade.getTradeId());
+            throw new InvalidTradeException("Invalid Maturity date for trade " + trade.getTradeId() + ",maturity date should be greater than today's date");
         }
         return Boolean.TRUE;
     }
@@ -65,7 +65,7 @@ public class TradeServiceImpl implements TradeService {
         if (Optional.ofNullable(oldTradeMap.get(trade.getVersion())).isPresent()) { // Override Trade
             this.updateExistingTrade(trade);
         } else if (trade.getVersion() < Collections.min(oldTradeMap.keySet())) { // Invalid Trade
-            throw new InvalidTradeException("Invalid version for trade " + trade.getTradeId());
+            throw new InvalidTradeException("Invalid version for trade " + trade.getTradeId() + ",trade version should be greater or equal to existing version");
         } else { // Valid Trade so eligible to create
             this.createNewTrade(trade);
         }

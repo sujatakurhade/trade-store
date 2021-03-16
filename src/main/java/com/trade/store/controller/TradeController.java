@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * This Trade controller holds all of the request mappings for a store.
+ * This Trade controller has request mapping
  */
 @RestController
 public class TradeController {
@@ -19,7 +19,7 @@ public class TradeController {
     private TradeService tradeService;
 
     /**
-     * This request mapping accepts trade request, validates it and updates the store data.
+     * This request mapping accept trade in request and validate and update the store
      *
      * @param trade
      * @return Boolean
