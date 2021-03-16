@@ -45,7 +45,7 @@ mvn surefire-report:report
 
 **URL:** [http://localhost:8181/trade](http://localhost:8181/trade)
 
-#####1. If trade is valid and created successfully.
+1. If trade is valid and created successfully.
 
 **RequestBody:**  
 
@@ -61,8 +61,7 @@ mvn surefire-report:report
 **ResponseBody:**
     true
 
-
-#####2. If trade maturity date is invalid.
+2. If trade maturity date is invalid.
 
 **RequestBody:**  
     
@@ -85,7 +84,7 @@ mvn surefire-report:report
         "path": "/trade"
     }
     
-#####3. If trade trade version is less than existing version.
+3. If trade trade version is less than existing version.
 
 **RequestBody:**  
 
